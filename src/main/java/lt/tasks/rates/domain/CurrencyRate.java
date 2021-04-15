@@ -10,8 +10,7 @@ import java.util.List;
 
 @JacksonXmlRootElement(namespace = "FxRate")
 public class CurrencyRate  {
-    // FIXME turn to enum
-    // tp
+
     @JacksonXmlProperty(localName = "Tp")
     private String currency;
 
