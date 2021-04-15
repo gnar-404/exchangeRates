@@ -17,4 +17,4 @@ To start the app on default 8080 port
 ```http://localhost:8080/swagger-ui/```  
 
 Sample request
-```curl  --request GET "http://localhost:8080/api/download/csv?baseCurrency=EU&currencies=USD&currencies=CAD&currencies=BGN&dates=2020-03-12" -H "Accept: application/csv" --output currencies.csv```
+```curl --request GET "http://localhost:8080/api/download/csv?baseCurrency=EU&currencies=USD&currencies=CAD&currencies=BGN&dates=2020-03-12" --output currencies.csv```
