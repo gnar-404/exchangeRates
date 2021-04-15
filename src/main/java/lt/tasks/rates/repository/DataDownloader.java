@@ -4,5 +4,5 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public interface DataDownloader {
-    public InputStream download(String url) throws IOException;
+    InputStream download(String baseCurrency,String targetCurrency, String startDate, String endDate) throws IOException;
 }

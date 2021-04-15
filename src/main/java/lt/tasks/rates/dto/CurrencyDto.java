@@ -1,36 +1,54 @@
 package lt.tasks.rates.dto;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class CurrencyDto {
     // FIXME add validations
     // NOTE range is just a list of dates
-    private List<Date> dates;
-    private List<String> currencies;
-    private FileFormat fileFormat;
+    // Must be at least one
+    // MUST NOT BE EMPTY STRINGS
+    // CHECK WITH REGEX
+    private TreeSet<String> dates;
+    // Base currency type
+    // Must exist
+    // MUST NOT BE EMPTY STRINGS
+    private String baseCurrency;
+    // Currency codes to get data of
+    // Must be at least one
+    // MUST NOT BE EMPTY STRINGS
+    // CHECK WITH REGEX IF ONLY THREE LETTERS IN  CURRENCY CODE
+    private List<String> targetCurrencies;
 
-    public List<Date> getDates() {
+    public CurrencyDto() {
+    }
+
+    public CurrencyDto(String baseCurrency, List<String> targetCurrencies, TreeSet<String> dates) {
+        this.dates = dates;
+        this.baseCurrency = baseCurrency;
+        this.targetCurrencies = targetCurrencies;
+    }
+
+    public TreeSet<String> getDates() {
         return dates;
     }
 
-    public void setDates(List<Date> dates) {
+    public void setDates(TreeSet<String> dates) {
         this.dates = dates;
     }
 
-    public List<String> getCurrencies() {
-        return currencies;
+    public List<String> getTargetCurrencies() {
+        return targetCurrencies;
     }
 
-    public void setCurrencies(List<String> currencies) {
-        this.currencies = currencies;
+    public void setTargetCurrencies(List<String> targetCurrencies) {
+        this.targetCurrencies = targetCurrencies;
     }
 
-    public FileFormat getFileFormat() {
-        return fileFormat;
+    public String getBaseCurrency() {
+        return baseCurrency;
     }
 
-    public void setFileFormat(FileFormat fileFormat) {
-        this.fileFormat = fileFormat;
+    public void setBaseCurrency(String baseCurrency) {
+        this.baseCurrency = baseCurrency;
     }
 }
