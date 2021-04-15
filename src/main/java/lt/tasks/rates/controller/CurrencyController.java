@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 
@@ -36,7 +37,7 @@ public class CurrencyController {
             @ApiParam(
                     value = "List of dates to get currency ratio for e.g. 2020-03-18",
                     required = true)
-            @RequestParam TreeSet<String> dates){
+            @RequestParam SortedSet<String> dates){
         try {
             CurrencyDto currencyDto = new CurrencyDto(baseCurrency, currencies, dates);
             InputStreamResource file = currencyService.getFile(currencyDto);

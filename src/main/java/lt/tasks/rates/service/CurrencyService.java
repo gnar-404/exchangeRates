@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -54,12 +55,10 @@ public class CurrencyService {
     }
 
     public InputStreamResource buildCSV(List<CurrencyRates> currencyRates) {
-
         List<String> headerRow = buildCsvHeader(currencyRates.get(0));
         List<List<String>> entryRows = buildCsvEntries(currencyRates);
 
         StringBuilder sb = new StringBuilder();
-        //FIXME move to static variables
         sb.append(String.join(",", headerRow));
         sb.append("\n");
 
@@ -80,13 +79,13 @@ public class CurrencyService {
         return xmlMapper.readValue(file, CurrencyRates.class);
     }
 
-    private List<CurrencyRate> filterCurrencyRatesByDate(CurrencyRates currencyRates, TreeSet<String> dates) {
+    private List<CurrencyRate> filterCurrencyRatesByDate(CurrencyRates currencyRates, SortedSet<String> dates) {
         List<CurrencyRate> rates = currencyRates
                 .getCurrencyRates()
                 .stream()
                 .filter(currencyRate -> dates.contains(currencyRate.getDate()))
                 .collect(Collectors.toList());
-        if(rates.size()==0){
+        if(rates.isEmpty()){
             throw new NoDataFoundException();
         } else {
             return rates;
@@ -97,7 +96,6 @@ public class CurrencyService {
 
         List<String> headerLine = new ArrayList<>();
 
-        // FIXME extract to static variables
         headerLine.add("Base currency");
         headerLine.add("Target currency");
         // Create existing date columns

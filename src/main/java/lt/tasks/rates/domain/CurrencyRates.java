@@ -13,6 +13,7 @@ public class CurrencyRates {
     private List<CurrencyRate> currencyRates;
 
     public CurrencyRates() {
+        // Required by JacksonXml
     }
 
     public CurrencyRates(List<CurrencyRate> currencyRates) {

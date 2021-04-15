@@ -20,8 +20,7 @@ public class CurrencyRepository implements DataDownloader {
                 + startDate
                 + "&dtTo="
                 + endDate;
-        //FIXME
-         // Check spring webclient
+
         URLConnection urlConnection = new URL(url).openConnection();
         urlConnection.addRequestProperty("Accept", "application/xml");
 

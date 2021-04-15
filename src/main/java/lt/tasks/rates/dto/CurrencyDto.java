@@ -5,20 +5,20 @@ import java.util.*;
 
 public class CurrencyDto {
 
-    private TreeSet<String> dates;
+    private SortedSet<String> dates;
 
     private String baseCurrency;
 
     private List<String> targetCurrencies;
 
-    public CurrencyDto(String baseCurrency, List<String> targetCurrencies, TreeSet<String> dates) {
+    public CurrencyDto(String baseCurrency, List<String> targetCurrencies, SortedSet<String> dates) {
         validate(baseCurrency, targetCurrencies, dates);
         this.dates = dates;
         this.baseCurrency = baseCurrency;
         this.targetCurrencies = targetCurrencies;
     }
 
-    public TreeSet<String> getDates() {
+    public SortedSet<String> getDates() {
         return dates;
     }
 
@@ -30,7 +30,7 @@ public class CurrencyDto {
         return baseCurrency;
     }
 
-    private void validate(String baseCurrency, List<String> targetCurrencies, TreeSet<String> dates) {
+    private void validate(String baseCurrency, List<String> targetCurrencies, SortedSet<String> dates) {
         if (!baseCurrency.matches("^[A-Z]{2}")) {
             throw new RuntimeException("Wrong base currency pattern.");
         }

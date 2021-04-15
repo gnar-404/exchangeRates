@@ -14,6 +14,7 @@ public class Currency {
     private BigDecimal currencyAmount;
 
     public Currency() {
+        // Required by JacksonXml
     }
 
     public Currency(String currency, BigDecimal currencyAmount) {

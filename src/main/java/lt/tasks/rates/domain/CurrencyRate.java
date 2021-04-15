@@ -23,6 +23,7 @@ public class CurrencyRate  {
     private List<Currency> currencies;
 
     public CurrencyRate() {
+        // Required by JacksonXml
     }
 
     public String getCurrency() {
