@@ -21,7 +21,7 @@ public class CurrencyController {
     private CurrencyService currencyService;
 
     @GetMapping("/csv")
-    @ApiOperation(value = "Returns file containing currency changes", notes = "Returns file containing currency changes")
+    @ApiOperation(value = "Returns file containing currency changes", notes = "Returns file containing currency changes. Base Currency EU or LT. Data format YYYY-MM-DD. ")
     public ResponseEntity getCurrencies(@RequestParam String baseCurrency, @RequestParam List<String> currencies, @RequestParam TreeSet<String> dates){
         CurrencyDto currencyDto = new CurrencyDto(baseCurrency, currencies, dates);
         try {
