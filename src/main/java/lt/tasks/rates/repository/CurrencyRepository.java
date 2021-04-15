@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CurrencyRepository implements DataDownloader {
      public InputStream download(String baseCurrency,String targetCurrency, String startDate, String endDate) throws IOException {
+
      // FIXME extract base url to config variable
         String url ="http://www.lb.lt/webservices/fxrates/FxRates.asmx/getFxRatesForCurrency?tp="
                 + baseCurrency

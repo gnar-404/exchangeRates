@@ -40,7 +40,7 @@ public class CurrencyService {
                 currencyRates.add(rates);
 
             } catch ( IOException e) {
-                throw new RuntimeException();
+                throw new RuntimeException(e.getMessage());
             }
 
         });

@@ -1,6 +1,5 @@
 package lt.tasks.rates;
 
-import lt.tasks.rates.domain.CurrencyRate;
 import org.springframework.boot.SpringApplication;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
