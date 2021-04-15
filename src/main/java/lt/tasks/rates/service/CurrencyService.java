@@ -4,6 +4,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lt.tasks.rates.domain.CurrencyRate;
 import lt.tasks.rates.domain.CurrencyRates;
 import lt.tasks.rates.dto.CurrencyDto;
+import lt.tasks.rates.exception.NoDataFoundException;
 import lt.tasks.rates.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -39,7 +40,7 @@ public class CurrencyService {
 
                 currencyRates.add(rates);
 
-            } catch ( IOException e) {
+            } catch (IOException e) {
                 throw new RuntimeException(e.getMessage());
             }
 
@@ -49,7 +50,6 @@ public class CurrencyService {
 
     public InputStreamResource getFile(CurrencyDto currencyDto) {
         List<CurrencyRates> currencyRates = getCurrencyRates(currencyDto);
-        //FIXME check if currency rates not empty
         return buildCSV(currencyRates);
     }
 
@@ -60,11 +60,11 @@ public class CurrencyService {
 
         StringBuilder sb = new StringBuilder();
         //FIXME move to static variables
-        sb.append(String.join(",",headerRow));
+        sb.append(String.join(",", headerRow));
         sb.append("\n");
 
         for (List<String> entryRow : entryRows) {
-            sb.append(String.join(",",entryRow));
+            sb.append(String.join(",", entryRow));
             sb.append("\n");
         }
 
@@ -81,11 +81,16 @@ public class CurrencyService {
     }
 
     private List<CurrencyRate> filterCurrencyRatesByDate(CurrencyRates currencyRates, TreeSet<String> dates) {
-        return currencyRates
+        List<CurrencyRate> rates = currencyRates
                 .getCurrencyRates()
                 .stream()
                 .filter(currencyRate -> dates.contains(currencyRate.getDate()))
                 .collect(Collectors.toList());
+        if(rates.size()==0){
+            throw new NoDataFoundException();
+        } else {
+            return rates;
+        }
     }
 
     private List<String> buildCsvHeader(CurrencyRates baseRates) {
