@@ -5,14 +5,19 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CurrencyRepository implements DataDownloader {
+    @Autowired
+    private Environment environment;
+
      public InputStream download(String baseCurrency,String targetCurrency, String startDate, String endDate) throws IOException {
 
-     // FIXME extract base url to config variable
-        String url ="http://www.lb.lt/webservices/fxrates/FxRates.asmx/getFxRatesForCurrency?tp="
+        String url =environment.getProperty("lithuanian.bank.getFxRatesForCurrency.url")
+                +"?tp="
                 + baseCurrency
                 + "&ccy="
                 + targetCurrency
