@@ -48,12 +48,12 @@ public class CurrencyService {
         return currencyRates;
     }
 
-    public InputStreamResource getFile(CurrencyDto currencyDto) {
+    public String getFile(CurrencyDto currencyDto) {
         List<CurrencyRates> currencyRates = getCurrencyRates(currencyDto);
         return buildCSV(currencyRates);
     }
 
-    public InputStreamResource buildCSV(List<CurrencyRates> currencyRates) {
+    public String buildCSV(List<CurrencyRates> currencyRates) {
         List<String> headerRow = buildCsvHeader(currencyRates.get(0));
         List<List<String>> entryRows = buildCsvEntries(currencyRates);
 
@@ -66,10 +66,7 @@ public class CurrencyService {
             sb.append("\n");
         }
 
-        String csvContents = sb.toString();
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(csvContents.getBytes(StandardCharsets.UTF_8));
-
-        return new InputStreamResource(inputStream);
+        return sb.toString();
 
     }
 

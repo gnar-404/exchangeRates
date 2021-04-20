@@ -39,7 +39,7 @@ public class CurrencyController {
             @RequestParam SortedSet<String> dates){
         try {
             CurrencyDto currencyDto = new CurrencyDto(baseCurrency, currencies, dates);
-            InputStreamResource file = currencyService.getFile(currencyDto);
+            String file = currencyService.getFile(currencyDto);
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "currencies.csv")
                     .contentType(MediaType.parseMediaType("application/csv"))
