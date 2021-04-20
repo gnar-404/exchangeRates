@@ -7,14 +7,11 @@ import lt.tasks.rates.dto.CurrencyDto;
 import lt.tasks.rates.exception.NoDataFoundException;
 import lt.tasks.rates.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;
